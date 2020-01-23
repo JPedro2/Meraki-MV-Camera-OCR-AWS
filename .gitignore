@@ -1,0 +1,29 @@
+# Operating Systems
+.DS_Store
+.idea
+
+
+# Credentials
+aws-rek-api-cred.csv
+env.py
+
+
+# Virtual Environments
+.venv
+venv/
+.python-version
+Pipfile
+Pipfile.lock
+
+
+# Python Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Folders
+images/*
+
+# Log files
+rekognition_logs.txt
