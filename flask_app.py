@@ -1,6 +1,6 @@
 from flask import request, Flask
 import Meraki_AWS_Script
-import env
+import credentials
 
 flask_app = Flask(__name__)
 
@@ -13,5 +13,5 @@ def detect_text():
 
 
 if __name__ == "__main__":
-    flask_app.run(host=env.FLASK["Flask_HOST"], port=env.FLASK["Flask_PORT"], debug=False)
+    flask_app.run(host=credentials.FLASK["Flask_HOST"], port=credentials.FLASK["Flask_PORT"], debug=False)
 

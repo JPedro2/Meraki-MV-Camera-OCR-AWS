@@ -4,20 +4,19 @@ import ssl
 import os
 import requests
 import json
-import aws_utils
-import log_utils
+from utils import aws_utils, log_utils
 from PIL import Image
 import io
 import time
-import env
+import credentials
 
 
 def meraki_snapshot_link():
 
-    base_URL = env.MERAKI["baseURL"]
-    api_Key = env.MERAKI["API-Key"]
-    network_ID = env.MERAKI["NetworkID"]
-    camera_SERIAL = env.MERAKI["Camera-Serial"]
+    base_URL = credentials.MERAKI["baseURL"]
+    api_Key = credentials.MERAKI["API-Key"]
+    network_ID = credentials.MERAKI["NetworkID"]
+    camera_SERIAL = credentials.MERAKI["Camera-Serial"]
 
     url = base_URL+"/networks/"+network_ID+"/cameras/"+camera_SERIAL+"/snapshot"
     payload = ""
@@ -42,8 +41,8 @@ def snapshot_meraki_camera():
     if not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None):
        ssl._create_default_https_context = ssl._create_unverified_context
 
-    if os.path.exists('images/meraki_snapshot.jpeg'):
-        os.remove('images/meraki_snapshot.jpeg')
+    #if os.path.exists('images/meraki_snapshot.jpeg'):
+    #    os.remove('images/meraki_snapshot.jpeg')
 
     time.sleep(5)
     r = requests.get(url)
@@ -58,6 +57,9 @@ def snapshot_meraki_camera():
     if r.status_code == 200:
         with open('images/meraki_snapshot.jpeg', 'wb') as f:
             f.write(r.content)
+
+        #image_manipulation.image_enhancement("images/meraki_snapshot.jpeg")
+
     else:
         print("Image not found and the response status code is:", r.status_code)
 
@@ -86,7 +88,7 @@ def detect_text():
 
     print('Detected text\n----------')
     for text in textDetections:
-        if text['Confidence'] >= 90 and text['Type'] == "LINE":
+        if text['Confidence'] >= 85 and text['Type'] == "LINE":
             print('Detected text:' + text['DetectedText'])
             print('Confidence: ' + "{:.2f***REMOVED***".format(text['Confidence']) + "%")
             print('Id: {***REMOVED***'.format(text['Id']))

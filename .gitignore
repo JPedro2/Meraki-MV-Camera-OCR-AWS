@@ -24,6 +24,10 @@ __pycache__/
 
 # Folders
 images/*
+fatigue-lvl/*
 
 # Log files
 rekognition_logs.txt
+
+# Scripts
+coffee_demo.py
