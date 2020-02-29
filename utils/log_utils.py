@@ -7,7 +7,7 @@ def write_to_reko_log_file(textDetections):
         with open('rekognition_logs.txt', 'a') as f:
             for text in textDetections:
                 f.write('Detected text: ' + text['DetectedText'])
-                f.write('\n   Confidence: ' + "{:.2f***REMOVED***".format(text['Confidence']) + "%")
+                f.write('\n   Confidence: ' + "{:.2f}".format(text['Confidence']) + "%")
                 f.write('\n      Type: ' + text['Type'] + "\n \n")
             f.write('----------\n')
     else:
@@ -15,6 +15,6 @@ def write_to_reko_log_file(textDetections):
             f.write("The Beggining of it all!\n----------\n")
             for text in textDetections:
                 f.write('Detected text: ' + text['DetectedText'])
-                f.write('\n   Confidence : ' + "{:.2f***REMOVED***".format(text['Confidence']) + "%")
+                f.write('\n   Confidence : ' + "{:.2f}".format(text['Confidence']) + "%")
                 f.write('\n      Type: ' + text['Type'] + "\n \n")
             f.write('----------\n')

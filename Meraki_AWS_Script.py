@@ -23,7 +23,7 @@ def meraki_snapshot_link():
     headers = {
         'X-Cisco-Meraki-API-Key': api_Key,
         'Content-Type': "application/json"
-        ***REMOVED***
+        }
 
     response = requests.request("POST", url, data=payload, headers=headers)
     picture_url = json.loads(response.text)
@@ -79,7 +79,7 @@ def detect_text():
 
     client = aws_utils.init_aws_Session()
 
-    response = client.detect_text(Image={'Bytes': convert_jpeg_binary()***REMOVED***)
+    response = client.detect_text(Image={'Bytes': convert_jpeg_binary()})
 
     textDetections = response['TextDetections']
 
@@ -90,8 +90,8 @@ def detect_text():
     for text in textDetections:
         if text['Confidence'] >= 85 and text['Type'] == "LINE":
             print('Detected text:' + text['DetectedText'])
-            print('Confidence: ' + "{:.2f***REMOVED***".format(text['Confidence']) + "%")
-            print('Id: {***REMOVED***'.format(text['Id']))
+            print('Confidence: ' + "{:.2f}".format(text['Confidence']) + "%")
+            print('Id: {}'.format(text['Id']))
             print('Type:' + text['Type'])
             detected_text = text['DetectedText']
         print()
