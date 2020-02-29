@@ -5,7 +5,7 @@
 
 # Credentials
 aws-rek-api-cred.csv
-env.py
+credentials.py
 
 
 # Virtual Environments
